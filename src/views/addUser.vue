@@ -45,69 +45,65 @@
 </template>
 
 <script>
-import { Http } from "@/axios";
+import { Http } from '@/axios'
 export default {
-  name: "addUser",
+  name: 'addUser',
   data() {
     var checkEmail = (rule, value, callback) => {
-      const mailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+      const mailReg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
       if (!value) {
-        return callback(new Error("邮箱不能为空"));
+        return callback(new Error('邮箱不能为空'))
       }
       setTimeout(() => {
         if (mailReg.test(value)) {
-          callback();
+          callback()
         } else {
-          callback(new Error("请输入正确的邮箱格式"));
+          callback(new Error('请输入正确的邮箱格式'))
         }
-      }, 100);
-    };
+      }, 100)
+    }
     return {
       ruleForm: {
-        name: "",
-        nickName: "",
-        email: "",
-        address: "",
-        sex: "男",
-        class: ["食品", "家居", "旅行", "电子"],
+        name: '',
+        nickName: '',
+        email: '',
+        address: '',
+        sex: '男',
+        class: ['食品', '家居', '旅行', '电子']
       },
-      hobby: ["食品", "家居"],
+      hobby: ['食品', '家居'],
       rules: {
-        name: [{ required: true, message: "名称不能为空", trigger: "blur" }],
+        name: [{ required: true, message: '名称不能为空', trigger: 'blur' }],
         nickName: [
-          { required: true, message: "昵称不能为空", trigger: "blur" },
+          { required: true, message: '昵称不能为空', trigger: 'blur' }
         ],
-        email: [{ required: true, validator: checkEmail, trigger: "blur" }],
-        address: [{ required: true, message: "名称不能为空", trigger: "blur" }],
-      },
-    };
+        email: [{ required: true, validator: checkEmail, trigger: 'blur' }],
+        address: [{ required: true, message: '名称不能为空', trigger: 'blur' }]
+      }
+    }
   },
   methods: {
     handleCheckedCitiesChange(val) {
-      this.hobby = val ? this.hobby : [];
+      this.hobby = val ? this.hobby : []
     },
     submitForm(e) {
-      e.class = this.hobby;
+      e.class = this.hobby
 
-      console.log(e);
-      Http.postUserData(e).then((data) => {
-        const h = this.$createElement;
+      console.log(e)
+      Http.postUserData(e).then(data => {
+        const h = this.$createElement
         this.$notify({
-          title: "添加成功",
-          message: h(
-            "i",
-            { style: "color: teal" },
-            data.data.name + "添加成功"
-          ),
-        });
-        this.$router.push("/");
-      });
+          title: '添加成功',
+          message: h('i', { style: 'color: teal' }, data.data.name + '添加成功')
+        })
+        this.$router.push('/')
+      })
     },
     resetForm(e) {
-      console.log(e);
-    },
-  },
-};
+      console.log(e)
+    }
+  }
+}
 </script>
 
 <style scoped>

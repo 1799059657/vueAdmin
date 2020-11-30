@@ -35,55 +35,51 @@
 </template>
 
 <script>
-import { Http } from "@/axios";
+import { Http } from '@/axios'
 export default {
-  name: "addQQUser",
+  name: 'addQQUser',
   data() {
     return {
       ruleForm: {
-        name: "",
-        nickName: "",
-        qq: "",
-        age: "",
-        sex: "男",
+        name: '',
+        nickName: '',
+        qq: '',
+        age: '',
+        sex: '男'
       },
 
       rules: {
-        name: [{ required: true, message: "名称不能为空", trigger: "blur" }],
+        name: [{ required: true, message: '名称不能为空', trigger: 'blur' }],
         nickName: [
-          { required: true, message: "昵称不能为空", trigger: "blur" },
+          { required: true, message: '昵称不能为空', trigger: 'blur' }
         ],
         qq: [
-          { required: true, message: "qq不能为空", trigger: "blur" },
-          { min: 8, max: 10, message: "请输入6-8位qq号" },
+          { required: true, message: 'qq不能为空', trigger: 'blur' },
+          { min: 8, max: 10, message: '请输入6-8位qq号' }
         ],
-        age: [{ required: true, message: "年龄不能为空", trigger: "blur" }],
-      },
-    };
+        age: [{ required: true, message: '年龄不能为空', trigger: 'blur' }]
+      }
+    }
   },
   methods: {
     submitForm(e) {
-      e.class = this.hobby;
+      e.class = this.hobby
 
-      console.log(e);
-      Http.postqqUserData(e).then((data) => {
-        const h = this.$createElement;
+      console.log(e)
+      Http.postqqUserData(e).then(data => {
+        const h = this.$createElement
         this.$notify({
-          title: "添加成功",
-          message: h(
-            "i",
-            { style: "color: teal" },
-            data.data.name + "添加成功"
-          ),
-        });
-        this.$router.push("/");
-      });
+          title: '添加成功',
+          message: h('i', { style: 'color: teal' }, data.data.name + '添加成功')
+        })
+        this.$router.push('/')
+      })
     },
     resetForm(e) {
-      console.log(e);
-    },
-  },
-};
+      console.log(e)
+    }
+  }
+}
 </script>
 
 <style scoped>

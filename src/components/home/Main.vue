@@ -1,17 +1,15 @@
 <template>
-  <div class="shop">
-
-  </div>
+  <div class="shop"></div>
 </template>
 
 <script>
 export default {
-  name: "Shop",
+  name: 'Shop',
   data() {
-    return {};
+    return {}
   },
-  methods: {},
-};
+  methods: {}
+}
 </script>
 
 <style scoped></style>

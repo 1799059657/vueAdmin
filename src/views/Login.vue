@@ -34,60 +34,60 @@
 </template>
 
 <script>
-import { Http } from "../axios";
+import { Http } from '../axios'
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
       ruleForm: {
-        userName: "",
-        password: "",
+        userName: '',
+        password: ''
       },
       rules: {
         password: [
-          { required: true, message: "密码不能为空", trigger: "change" },
-          { min: 5, max: 12, message: "请输入5-12位", trigger: "change" },
+          { required: true, message: '密码不能为空', trigger: 'change' },
+          { min: 5, max: 12, message: '请输入5-12位', trigger: 'change' }
         ],
         userName: [
-          { required: true, message: "年龄不能为空", trigger: "change" },
-          { min: 5, max: 8, message: "请输入5-8位", trigger: "change" },
-        ],
-      },
-    };
+          { required: true, message: '年龄不能为空', trigger: 'change' },
+          { min: 5, max: 8, message: '请输入5-8位', trigger: 'change' }
+        ]
+      }
+    }
   },
   methods: {
     submitForm() {
-      this.$refs.formName.validate((valid) => {
+      this.$refs.formName.validate(valid => {
         if (valid) {
-          Http.login({userName:this.ruleForm.userName}).then((data) => {
-            console.log(data);
+          Http.login({ userName: this.ruleForm.userName }).then(data => {
+            console.log(data)
             if (data.data.length > 0) {
-              this.testPwd(data.data[0].password, this.ruleForm.password);
+              this.testPwd(data.data[0].password, this.ruleForm.password)
             } else {
-              alert("用户不存在");
-              this.resetForm();
+              alert('用户不存在')
+              this.resetForm()
             }
-          });
+          })
         } else {
-          alert("请输入正确的账号密码！");
-          return false;
+          alert('请输入正确的账号密码！')
+          return false
         }
-      });
+      })
     },
     resetForm() {
-      this.ruleForm.userName = "";
-      this.ruleForm.password = "";
+      this.ruleForm.userName = ''
+      this.ruleForm.password = ''
     },
     testPwd(dataPwd, inpPwd) {
       if (dataPwd === inpPwd) {
-        this.$router.push("/");
+        this.$router.push('/')
       } else {
-        alert("密码错误！");
-        this.ruleForm.password = "";
+        alert('密码错误！')
+        this.ruleForm.password = ''
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

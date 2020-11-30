@@ -47,28 +47,28 @@
 
 <script>
 export default {
-  name: "Menu",
+  name: 'Menu',
   data() {
     return {
-      unique: true,
-    };
+      unique: true
+    }
   },
   model: {
-    prop: "cptName",
-    event: "toCptName",
+    prop: 'cptName',
+    event: 'toCptName'
   },
   props: {
     cptName: {
       type: String,
-      default: "UserList",
-    },
+      default: 'UserList'
+    }
   },
   methods: {
     gedex(e) {
-      this.$emit("toCptName", e);
-    },
-  },
-};
+      this.$emit('toCptName', e)
+    }
+  }
+}
 </script>
 
 <style scoped>

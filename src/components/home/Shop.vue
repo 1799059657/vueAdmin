@@ -23,44 +23,44 @@
 
 <script>
 export default {
-  name: "Shop",
+  name: 'Shop',
   data() {
     return {
-      input: "",
-    };
+      input: ''
+    }
   },
-  props: ["cptName"],
+  props: ['cptName'],
   filters: {
     filterCpt(val) {
-      let value = "";
+      let value = ''
       switch (val) {
-        case "UserList":
-          value = "用户列表";
-          break;
-        case "QList":
-          value = "QQ用户列表";
-          break;
+        case 'UserList':
+          value = '用户列表'
+          break
+        case 'QList':
+          value = 'QQ用户列表'
+          break
       }
-      return value;
-    },
+      return value
+    }
   },
   methods: {
     submitValue() {
-      if (this.cptName === "UserList") {
-        this.$store.commit("setUserValue", this.input);
-      } else if (this.cptName === "QList") {
-        this.$store.commit("setQQUserValue", this.input);
+      if (this.cptName === 'UserList') {
+        this.$store.commit('setUserValue', this.input)
+      } else if (this.cptName === 'QList') {
+        this.$store.commit('setQQUserValue', this.input)
       }
     },
     add() {
-      if (this.cptName === "UserList") {
-        this.$router.push("/addUser");
-      } else if (this.cptName === "QList") {
-        this.$router.push("/addQQUser");
+      if (this.cptName === 'UserList') {
+        this.$router.push('/addUser')
+      } else if (this.cptName === 'QList') {
+        this.$router.push('/addQQUser')
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

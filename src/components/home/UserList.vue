@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import { Http } from "@/axios";
+import { Http } from '@/axios'
 export default {
-  name: "UserList",
+  name: 'UserList',
   data() {
     return {
       tableData: [],
@@ -67,81 +67,86 @@ export default {
       pageSize: 5,
       currentPage: 1,
       loading: true,
-      timer: null,
-    };
+      timer: null
+    }
   },
   computed: {
     value() {
-      return this.$store.state.userValue;
-    },
+      return this.$store.state.userValue
+    }
   },
   watch: {
-    value(val) {
-      this.getPageData(val);
-    },
+    value() {
+      this.getPageData(this.currentPage)
+    }
   },
   methods: {
     deleteData(id) {
       Http.delUserData(id).then(() => {
-        this.initData();
-      });
+        this.initData()
+      })
     },
     loadingTab() {
       this.timer = setTimeout(() => {
-        this.loading = false;
-      }, 1000);
+        this.loading = false
+      }, 1000)
     },
     getPageData(newPage) {
-      let that = this;
+      let that = this
+      that.loading = true
       Http.getUserData({
-        q: that.value,
+        nickName_like: that.value,
         _page: newPage,
-        _limit: that.pageSize,
-      }).then((data) => {
-        that.tableData = data.data;
-        that.loadingTab();
-      });
+        _limit: that.pageSize
+      }).then(data => {
+        that.tableData = data.data
+        that.loadingTab()
+        that.getTotal({ nickName_like: that.value })
+      })
     },
     currentChange(page) {
-      this.getPageData(page);
+      this.getPageData(page)
     },
     prevClick(page) {
-      this.getPageData(page);
+      this.getPageData(page)
     },
     nextClick(page) {
-      this.getPageData(page);
+      this.getPageData(page)
+    },
+    getTotal(params) {
+      Http.getUserData(params).then(data => {
+        this.total = data.data.length
+      })
     },
     initData() {
-      Http.getUserData({}).then((data) => {
-        this.total = data.data.length;
-      });
-      this.getPageData(this.currentPage);
+      this.getTotal({})
+      this.getPageData(this.currentPage)
     },
     open(id) {
-      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           this.$message({
-            type: "success",
-            message: "删除成功!",
-          });
-          this.deleteData(id);
+            type: 'success',
+            message: '删除成功!'
+          })
+          this.deleteData(id)
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除",
-          });
-        });
-    },
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    }
   },
   filters: {
     toJoin(val) {
-      return val.join(" ");
-    },
+      return val.join(' ')
+    }
   },
   // computed: {
   //   value() {
@@ -149,9 +154,9 @@ export default {
   //   },
   // },
   mounted() {
-    this.initData();
-  },
-};
+    this.initData()
+  }
+}
 </script>
 
 <style scoped>

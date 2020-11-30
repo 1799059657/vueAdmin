@@ -18,24 +18,24 @@
 </template>
 
 <script>
-import Menu from "../components/home/Menu";
-import Shop from "../components/home/Shop";
-import UserList from "../components/home/UserList";
-import QList from "../components/home/QList";
+import Menu from '../components/home/Menu'
+import Shop from '../components/home/Shop'
+import UserList from '../components/home/UserList'
+import QList from '../components/home/QList'
 export default {
-  name: "Home",
+  name: 'Home',
   data() {
     return {
-      cptName: "UserList",
-    };
+      cptName: 'UserList'
+    }
   },
   components: {
     Menu,
     Shop,
     UserList,
-    QList,
-  },
-};
+    QList
+  }
+}
 </script>
 
 <style scoped>
