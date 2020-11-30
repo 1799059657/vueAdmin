@@ -50,11 +50,15 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, form, next) => {
-  if (!to.name === 'Login') {
-    console.log('123')
-    next()
+  let token = localStorage.getItem('token')
+  console.log(to.name)
+  if (to.name !== 'Login') {
+    if (token) {
+      next()
+    } else {
+      next('/login')
+    }
   } else {
-    console.log('321')
     next()
   }
 })

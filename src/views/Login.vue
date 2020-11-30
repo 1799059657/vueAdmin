@@ -62,7 +62,7 @@ export default {
           Http.login({ userName: this.ruleForm.userName }).then(data => {
             console.log(data)
             if (data.data.length > 0) {
-              this.testPwd(data.data[0].password, this.ruleForm.password)
+              this.testPwd(data.data[0], this.ruleForm.password)
             } else {
               alert('用户不存在')
               this.resetForm()
@@ -78,8 +78,13 @@ export default {
       this.ruleForm.userName = ''
       this.ruleForm.password = ''
     },
-    testPwd(dataPwd, inpPwd) {
-      if (dataPwd === inpPwd) {
+    testPwd(data, inpPwd) {
+      if (data.password === inpPwd) {
+        let item = {}
+        item.userName = data.userName
+        item.token = data.token
+        item.headImg = data.headImg
+        localStorage.setItem('token', JSON.stringify(item))
         this.$router.push('/')
       } else {
         alert('密码错误！')
