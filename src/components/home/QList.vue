@@ -84,8 +84,8 @@ export default {
     getPageData(newPage) {
       let that = this;
       Http.getqqUserData({
-        q: that.$store.state.value,
-        _page: newPage,
+        q:newPage,
+        _page: that.currentPage,
         _limit: that.pageSize,
       }).then((data) => {
         that.tableData = data.data;
