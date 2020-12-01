@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p class="top"></p>
+    <Top></Top>
     <el-container>
       <el-aside width="300px">
         <Menu v-model="cptName"></Menu>
@@ -22,6 +22,7 @@ import Menu from '../components/home/Menu'
 import Shop from '../components/home/Shop'
 import UserList from '../components/home/UserList'
 import QList from '../components/home/QList'
+import Top from '../components/home/Top'
 export default {
   name: 'Home',
   data() {
@@ -33,15 +34,12 @@ export default {
     Menu,
     Shop,
     UserList,
-    QList
+    QList,
+    Top
   }
 }
 </script>
 
 <style scoped>
-.top {
-  width: 100%;
-  height: 30px;
-  background: #545c64;
-}
+
 </style>

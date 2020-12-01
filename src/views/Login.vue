@@ -45,12 +45,12 @@ export default {
       },
       rules: {
         password: [
-          { required: true, message: '密码不能为空', trigger: 'change' },
-          { min: 5, max: 12, message: '请输入5-12位', trigger: 'change' }
+          { required: true, message: '密码不能为空', trigger: 'blur' },
+          { min: 5, max: 12, message: '请输入5-12位', trigger: 'blur' }
         ],
         userName: [
-          { required: true, message: '年龄不能为空', trigger: 'change' },
-          { min: 5, max: 8, message: '请输入5-8位', trigger: 'change' }
+          { required: true, message: '年龄不能为空', trigger: 'blur' },
+          { min: 5, max: 8, message: '请输入5-8位', trigger: 'blur' }
         ]
       }
     }
@@ -78,6 +78,7 @@ export default {
       this.ruleForm.userName = ''
       this.ruleForm.password = ''
     },
+    
     testPwd(data, inpPwd) {
       if (data.password === inpPwd) {
         let item = {}

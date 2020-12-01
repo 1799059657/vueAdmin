@@ -21,7 +21,7 @@
       ></el-table-column>
       <el-table-column prop="sex" label="性别" width="120"></el-table-column>
       <el-table-column prop="age" label="年纪" width="100"></el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column label="操作" width="100" fixed="right">
         <template slot-scope="scope">
           <el-button @click="open(scope.row.id)" type="text" size="small"
             >删除</el-button

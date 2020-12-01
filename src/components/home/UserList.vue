@@ -30,7 +30,7 @@
           <p>{{ scope.row.class | toJoin }}</p>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column label="操作" width="100"  fixed="right">
         <template slot-scope="scope">
           <el-button @click="open(scope.row.id)" type="text" size="small"
             >删除</el-button
