@@ -28,7 +28,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleForm)">提交</el-button>
-        <el-button @click="resetForm(ruleForm)">重置</el-button>
+        <el-button @click="resetForm()">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -64,9 +64,9 @@ export default {
   methods: {
     submitForm(e) {
       e.class = this.hobby
-
-      console.log(e)
-      Http.postqqUserData(e).then(data => {
+       this.$refs['ruleForm'].validate((valid)=>{
+        if (valid) {
+          Http.postqqUserData(e).then(data => {
         const h = this.$createElement
         this.$notify({
           title: '添加成功',
@@ -74,9 +74,14 @@ export default {
         })
         this.$router.push('/')
       })
+        }else{
+          return false
+        }
+      })
+       
     },
-    resetForm(e) {
-      console.log(e)
+     resetForm() {
+      this.$refs['ruleForm'].resetFields()
     }
   }
 }
